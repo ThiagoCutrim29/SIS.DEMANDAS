@@ -1,0 +1,116 @@
+﻿@model Usuario
+  
+<style>
+    a {
+        text-decoration: none; /* Isso remove o sublinhado */
+    }
+</style>
+
+<div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <span class="fs-5 d-none d-sm-inline"><h3><b>SIGD</b></h3></span>
+            <span class="fs-5 d-none d-sm-inline"><p><b> Olá @Model.Nome</b></p></span>
+
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+
+                <li >
+                 <a class=" d-none d-sm-inline text-white" asp-controller="Home" asp-action="Index">INICIO</a> 
+                </li>
+
+                @if (Model.Perfil == SIGD.Enums.PerfilEnum.Demandante || Model.Perfil == SIGD.Enums.PerfilEnum.Admin)
+                {
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" data-bs-target="#submenu1" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-white">DEMANDAS</span>
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu1">
+                            <li class="w-100">
+                                <a asp-controller="Demandas" asp-action="Create" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Nova Demanda</span>
+                                </a>
+                            </li>
+                            <li class="w-100">
+                                <a asp-controller="Demandas" asp-action="Index" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Demandas Abertas</span>
+                                </a>
+                            </li>
+                            <li class="w-100">
+                                <a asp-controller="Demandas" asp-action="DemandasFinalizadas" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Demandas Finalizadas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if (Model.Perfil == SIGD.Enums.PerfilEnum.Programador || Model.Perfil == SIGD.Enums.PerfilEnum.Admin)
+                {
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" data-bs-target="#submenu2" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-white">AREA DO PROGRAMADOR</span>
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2">
+                            <li class="w-100">
+                                <a asp-controller="Demandas" asp-action="DemandasPendentes" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Demandas Pendentes de Aceitação</span>
+                                </a>
+                            </li>
+                            <li class="w-100">
+                                <a asp-controller="Demandas" asp-action="DemandasAnalise" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Demandas em Analise</span>
+                                </a>
+                            </li>
+                            <li class="w-100">
+                                <a asp-controller="Demandas" asp-action="DemandasFinalizadas" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Demandas Finalizadas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if (Model.Perfil == SIGD.Enums.PerfilEnum.Admin) 
+                
+                {
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" data-bs-target="#submenu3" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-white">USUÁRIO</span>
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu3">
+                            <li class="w-100">
+                                <a asp-controller="Usuarios" asp-action="Create" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline">Adicionar Usuário</span>
+                                </a>
+                            </li>
+
+                            <li class="w-100">
+                                <a asp-controller="Usuarios" asp-action="Index" class="nav-link px-0">
+                                    <span class="d-none d-sm-inline"> Gerenciar Usuário</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> 
+                }
+
+                <li>
+                    <a href="#submen5" data-bs-toggle="collapse" data-bs-target="#submenu5" class="nav-link px-0 align-middle">
+                        <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-white">AJUDA</span>
+                    </a>
+                    <ul class="collapse nav flex-column ms-1" id="submenu5">
+                        <li class="w-100">
+                            <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"> Contate </span> o Suporte</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a class="d-flex align-items-center text-white text-decoration-none  "asp-controller="Login" asp-action="Sair">
+
+                Encerrar Seção
+            </a>
+            <br/>
+            </div>
+        </div>
+    </div>
+
+
+

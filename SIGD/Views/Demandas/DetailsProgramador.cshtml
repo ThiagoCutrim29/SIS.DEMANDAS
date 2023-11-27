@@ -1,0 +1,158 @@
+﻿@model SIGD.Models.Demanda
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .text-left {
+        height: 0px;
+        margin-left: 150px;
+    }
+</style>
+
+<div class="text-left">
+    <h4>Detalhes da Demanda</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            TITULO:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+        <dt class="col-sm-2">
+            DESCRIÇÃO:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+        <dt class="col-sm-2">
+            STATUS:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.status)
+        </dd>
+        <dt class="col-sm-2">
+            DATA DE CADASTRATO:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DtCadastro)
+        </dd>
+        <dt class="col-sm-2">
+            PRAZO:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prazo)
+        </dd>
+        <dt class="col-sm-2">
+            DEMANDANTE:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Demandante)
+        </dd>
+        <dt class="col-sm-2">
+            PROGRAMADOR
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Programador)
+        </dd>
+    </dl>
+
+    <a href="#" class="btn btn-primary btn-sm" id="acaoDemandaButton">
+        @if (Model.status == "CRIADO")
+        {
+            <span class="text-uppercase">Aceitar Demanda</span>
+        }
+        else if (Model.status == "EM ANALISE")
+        {
+            
+                <span class="text-uppercase">Finalizar Demanda</span>
+           
+        }
+    </a>
+
+   
+
+  
+
+
+    <a asp-action="Index" class="btn btn-secondary btn-sm">Voltar</a>
+</div>
+
+<!-- Inclua o modal aqui -->
+<div class="modal fade" id="modalAceitarDemanda" tabindex="-1" role="dialog" aria-labelledby="modalAceitarDemandaLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAceitarDemandaLabel">Aceitar Demanda</h5>
+
+            </div>
+            <div class="modal-body">
+                <form asp-action="modalAceitarDemanda">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Prazo" class="control-label">Prazo de Finalizacao: </label>
+                        <input asp-for="Prazo" class="form-control" type="datetime-local" step="1" />
+                        <span asp-validation-for="Prazo" class="text-danger"></span>
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                        <a asp-action="DetailsProgramador" class="btn btn-secondary ">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalFinalizarDemanda" tabindex="-1" role="dialog" aria-labelledby="modalFinalizarDemandaLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFinalizarDemandaLabel">Finalizar Demanda</h5>
+
+            </div>
+            <div class="modal-body">
+                <form asp-action="modalFinalizarDemanda">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Observacao" class="control-label">Alguma Observação? Digite </label>
+                        <textarea asp-for="Observacao" class="form-control" rows="5" cols="50" maxlength="300" style="resize: none;"></textarea>
+                        <span asp-validation-for="Observacao" class="text-danger"></span>
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                        <a asp-action="DetailsProgramador" class="btn btn-secondary ">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#acaoDemandaButton").click(function () {
+            if ($(this).text().trim() === "Aceitar Demanda") {
+                $('#modalAceitarDemanda').modal('show');
+            } else if ($(this).text().trim() === "Finalizar Demanda") {
+                // Redirecionar para a action "FinalizarDemanda"
+                $('#modalFinalizarDemanda').modal('show');
+            }
+        });
+    });
+</script>
+
+
+
+    

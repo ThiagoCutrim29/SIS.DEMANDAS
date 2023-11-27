@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SIGD.Models.Demanda>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .text-left {
+        height: 0px;
+        margin-left: 150px;
+    }
+
+</style>
+
+<div class="text-left">
+
+    <h1>DEMANAS EM ANALISE</h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+
+                    TITULO
+                </th>
+
+                <th>
+                    STATUS
+                </th>
+                <th>
+                    DT DE CADASTRO
+                </th>
+                <th>
+                    PRAZO
+                </th>
+                <th>
+                    DEMANDANTE
+                </th>
+                <th>
+                    PROGRAMADOR
+                </th>
+                <th>
+                    AÇÕES
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DtCadastro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prazo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Demandante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Programador)
+                    </td>
+                    <td>
+                        <a asp-action="DetailsProgramador" asp-route-id="@item.Id" class="btn btn-primary btn-sm"> Detalhes</a>
+
+                    <td>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,45 @@
+﻿@model SIGD.Models.Demanda
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<style>
+    .text-left {
+        height: 0px;
+        margin-left: 150px;
+    }
+</style>
+
+<div class="text-left">
+    <h3>EDIÇÃO DE DEMANDA</h3>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="titulo" class="control-label">TITULO</label>
+                <input asp-for="titulo" class="form-control" />
+                <span asp-validation-for="titulo" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label asp-for="descricao" class="control-label">DESCRIÇÃO</label>
+                    <textarea asp-for="descricao" class="form-control" rows="10" cols="50" maxlength="600" style="resize: none;"></textarea>
+                    <span asp-validation-for="descricao" class="text-danger"></span>
+                </div>
+                <br/>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Voltar</a>
+    </div>
+      
+</div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

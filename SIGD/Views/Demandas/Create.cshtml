@@ -1,0 +1,52 @@
+﻿@model SIGD.Models.Demanda
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+    .text-left {
+        height: 0px;
+        margin-left: 150px;
+    }
+</style>
+
+<div class="text-left">
+
+<h1>CADASTRO DE DEMANDAS</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="titulo" class="control-label">TITULO</label>
+                    <input asp-for="titulo" class="form-control" maxlength="50" style="max-width: 100%; height: 2em; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" />
+                    <span asp-validation-for="titulo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="descricao" class="control-label">DESCRIÇÃO</label>
+                    <textarea asp-for="descricao" class="form-control" rows="10" cols="50" maxlength="600" style="resize: none;"></textarea>
+                    <span asp-validation-for="descricao" class="text-danger"></span>
+                </div>
+
+
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-controller="home" asp-action="Index" class="btn btn-secondary">Voltar</a>
+</div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
